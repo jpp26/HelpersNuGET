@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DbHelper")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+536b9a452c23eab525053bb15afdaf09559db83c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5398e53ee0b690b3803313f14e2829c0f176d523")]
 [assembly: System.Reflection.AssemblyProductAttribute("DbHelper")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DbHelper")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<!-- Metadatos para NuGet -->
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageId>SafeConnString</PackageId>
+		<!-- Cambia esto -->
+		<Version>1.0.0</Version>
+		<Authors>Juan Pablo Prieto</Authors>
+		<Company>DDCREATIVE</Company>
+		<Description>Cadena de conexion segura</Description>
+		<PackageTags>helpers;utils;security;database</PackageTags>
+		<RepositoryUrl>https://github.com/jpp26/HelpersNuGET</RepositoryUrl>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\DbHelper\DbHelper.csproj" />
+	  <ProjectReference Include="..\..\FileHelper\FileHelper.csproj" />
+	  <ProjectReference Include="..\..\Security\Security.csproj" />
+	</ItemGroup>
+
+</Project>
