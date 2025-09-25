@@ -1,0 +1,12 @@
+C:\ERP DDPOS 2025\Security\bin\Debug\net8.0\Security.deps.json
+C:\ERP DDPOS 2025\Security\bin\Debug\net8.0\Security.dll
+C:\ERP DDPOS 2025\Security\bin\Debug\net8.0\Security.pdb
+C:\ERP DDPOS 2025\Security\obj\Debug\net8.0\Security.GeneratedMSBuildEditorConfig.editorconfig
+C:\ERP DDPOS 2025\Security\obj\Debug\net8.0\Security.AssemblyInfoInputs.cache
+C:\ERP DDPOS 2025\Security\obj\Debug\net8.0\Security.AssemblyInfo.cs
+C:\ERP DDPOS 2025\Security\obj\Debug\net8.0\Security.csproj.CoreCompileInputs.cache
+C:\ERP DDPOS 2025\Security\obj\Debug\net8.0\Security.sourcelink.json
+C:\ERP DDPOS 2025\Security\obj\Debug\net8.0\Security.dll
+C:\ERP DDPOS 2025\Security\obj\Debug\net8.0\refint\Security.dll
+C:\ERP DDPOS 2025\Security\obj\Debug\net8.0\Security.pdb
+C:\ERP DDPOS 2025\Security\obj\Debug\net8.0\ref\Security.dll
