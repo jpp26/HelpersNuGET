@@ -3,6 +3,8 @@
   "dgSpecHash": "J+C1uj4hcLQ=",
   "success": true,
   "projectFilePath": "C:\\Users\\x\\source\\repos\\Paquete NuGet\\FileHelper\\FileHelper.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\x\\.nuget\\packages\\security\\1.0.0\\security.1.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -9,18 +9,20 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>SafeConnString</PackageId>
 		<!-- Cambia esto -->
-		<Version>1.0.0</Version>
+		<Version>1.0.3</Version>
 		<Authors>Juan Pablo Prieto</Authors>
+		<Owners>Juan Pablo Prieto</Owners>
+		<PackageLicenseExpresion>MIT</PackageLicenseExpresion>
 		<Company>DDCREATIVE</Company>
-		<Description>Cadena de conexion segura</Description>
+		<Description>Helpers para crear, encriptar/Desencriptar cadena de conexion SQL xml/json</Description>
 		<PackageTags>helpers;utils;security;database</PackageTags>
 		<RepositoryUrl>https://github.com/jpp26/HelpersNuGET</RepositoryUrl>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\DbHelper\DbHelper.csproj" />
-	  <ProjectReference Include="..\..\FileHelper\FileHelper.csproj" />
-	  <ProjectReference Include="..\..\Security\Security.csproj" />
+	  <ProjectReference Include="..\DbHelper\DbHelper.csproj" />
+	  <ProjectReference Include="..\FileHelper\FileHelper.csproj" />
+	  <ProjectReference Include="..\Security\Security.csproj" />
 	</ItemGroup>
 
 </Project>
