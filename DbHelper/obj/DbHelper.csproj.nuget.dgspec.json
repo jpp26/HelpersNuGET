@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\x\\source\\repos\\Paquete NuGet\\DbHelper\\DbHelper.csproj": {}
+    "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\DbHelper\\DbHelper.csproj": {}
   },
   "projects": {
-    "C:\\Users\\x\\source\\repos\\Paquete NuGet\\DbHelper\\DbHelper.csproj": {
+    "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\DbHelper\\DbHelper.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\x\\source\\repos\\Paquete NuGet\\DbHelper\\DbHelper.csproj",
+        "projectUniqueName": "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\DbHelper\\DbHelper.csproj",
         "projectName": "DbHelper",
-        "projectPath": "C:\\Users\\x\\source\\repos\\Paquete NuGet\\DbHelper\\DbHelper.csproj",
-        "packagesPath": "C:\\Users\\x\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\x\\source\\repos\\Paquete NuGet\\DbHelper\\obj\\",
+        "projectPath": "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\DbHelper\\DbHelper.csproj",
+        "packagesPath": "C:\\Users\\jpp26\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\DbHelper\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\x\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jpp26\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -32,8 +32,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\x\\source\\repos\\Paquete NuGet\\FileHelper\\FileHelper.csproj": {
-                "projectPath": "C:\\Users\\x\\source\\repos\\Paquete NuGet\\FileHelper\\FileHelper.csproj"
+              "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\FileHelper\\FileHelper.csproj": {
+                "projectPath": "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\FileHelper\\FileHelper.csproj"
               }
             }
           }
@@ -79,20 +79,20 @@
         }
       }
     },
-    "C:\\Users\\x\\source\\repos\\Paquete NuGet\\FileHelper\\FileHelper.csproj": {
+    "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\FileHelper\\FileHelper.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\x\\source\\repos\\Paquete NuGet\\FileHelper\\FileHelper.csproj",
+        "projectUniqueName": "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\FileHelper\\FileHelper.csproj",
         "projectName": "FileHelper",
-        "projectPath": "C:\\Users\\x\\source\\repos\\Paquete NuGet\\FileHelper\\FileHelper.csproj",
-        "packagesPath": "C:\\Users\\x\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\x\\source\\repos\\Paquete NuGet\\FileHelper\\obj\\",
+        "projectPath": "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\FileHelper\\FileHelper.csproj",
+        "packagesPath": "C:\\Users\\jpp26\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\FileHelper\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\x\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jpp26\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -107,8 +107,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\x\\source\\repos\\Paquete NuGet\\Security\\Security.csproj": {
-                "projectPath": "C:\\Users\\x\\source\\repos\\Paquete NuGet\\Security\\Security.csproj"
+              "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\Security\\Security.csproj": {
+                "projectPath": "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\Security\\Security.csproj"
               }
             }
           }
@@ -148,20 +148,20 @@
         }
       }
     },
-    "C:\\Users\\x\\source\\repos\\Paquete NuGet\\Security\\Security.csproj": {
+    "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\Security\\Security.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\x\\source\\repos\\Paquete NuGet\\Security\\Security.csproj",
+        "projectUniqueName": "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\Security\\Security.csproj",
         "projectName": "Security",
-        "projectPath": "C:\\Users\\x\\source\\repos\\Paquete NuGet\\Security\\Security.csproj",
-        "packagesPath": "C:\\Users\\x\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\x\\source\\repos\\Paquete NuGet\\Security\\obj\\",
+        "projectPath": "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\Security\\Security.csproj",
+        "packagesPath": "C:\\Users\\jpp26\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\Security\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\x\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jpp26\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
