@@ -143,7 +143,7 @@ ConnectionString.xml → ubicado en %AppData%\DDPOS\
 
 appsettings.json → generado automáticamente si no existe
 
-####-----  SEGURIDAD ------- #### 
+#### -----  SEGURIDAD ------- #### 
 
 Encriptación AES con clave derivada y salt fijo.
 
