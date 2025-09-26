@@ -1,11 +1,11 @@
-###CryptoHelperLib & DbHelperLibAsync (.NET 8) ### 
+### CryptoHelperLib & DbHelperLibAsync (.NET 8) ### 
 
 ##### PROPÓSITO GENERAL #####
 Este conjunto de clases permite manejar de forma segura cadenas de conexión SQL y claves JWT, utilizando encriptación AES, archivos XML, y una arquitectura desacoplada para conexiones asincrónicas.
 
 #### COMPONENTES PRINCIPALES ######
 
-####CryptoHelperLib######
+#### CryptoHelperLib ######
 
 Encripta y desencripta texto usando AES determinista.
 
@@ -29,13 +29,13 @@ JwtHelperLib
 
 Genera claves JWT encriptadas con AES.
 
-#####Métodos: ####
+##### Métodos: ####
 
 GenerarJwtKeyEncriptada(clavePlano)
 
 ObtenerJwtKeyDesencriptada(claveEncriptada)
 
-#####FileHelperLib ####
+##### FileHelperLib ####
 
 Administra el archivo XML ConnectionString.xml en AppData.
 
