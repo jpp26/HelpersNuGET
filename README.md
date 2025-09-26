@@ -1,9 +1,9 @@
 CryptoHelperLib & DbHelperLibAsync (.NET 8) 
 
-=========================================== 🔧 PROPÓSITO GENERAL =========================================== 
+##### PROPÓSITO GENERAL #####
 Este conjunto de clases permite manejar de forma segura cadenas de conexión SQL y claves JWT, utilizando encriptación AES, archivos XML, y una arquitectura desacoplada para conexiones asincrónicas.
 
-=========================================== COMPONENTES PRINCIPALES ===========================================
+#### COMPONENTES PRINCIPALES ######
 
 CryptoHelperLib
 
