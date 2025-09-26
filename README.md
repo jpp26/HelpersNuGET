@@ -137,13 +137,13 @@ MinPoolSizeProp
 
 PoolingEnabled
 
-#### ===== ARCHIVOS UTILIZADOS #### ========
+#### ------ ARCHIVOS UTILIZADOS ------- #### 
 
 ConnectionString.xml → ubicado en %AppData%\DDPOS\
 
 appsettings.json → generado automáticamente si no existe
 
-####=====  SEGURIDAD #### =======
+####-----  SEGURIDAD ------- #### 
 
 Encriptación AES con clave derivada y salt fijo.
 
@@ -153,7 +153,7 @@ JWT sincronizado con appsettings.json..
 
 Reconexión automática en SQL hasta 3 intentos.
 
-#### =================  VENTAJAS ####===========
+#### -------  VENTAJAS ------ ####
 
 Seguridad robusta para cadenas sensibles.
 
@@ -163,7 +163,7 @@ Compatible con .NET 8 y Microsoft.Data.SqlClient.
 
 Ideal para aplicaciones WinForms, WPF, Worker Services, etc.
 
-#### ==============  REQUISITOS #### ============
+#### --------  REQUISITOS ------- ####
 
 .NET 8
 
