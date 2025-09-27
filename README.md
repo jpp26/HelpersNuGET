@@ -1,174 +1,97 @@
-##### ====== CryptoHelperLib & DbHelperLibAsync (.NET 8) ===== ### 
+Encriptación y Sincronización de Cadena de Conexión (XML + JSON)
 
-##### PROPÓSITO GENERAL #####
-Este conjunto de clases permite manejar de forma segura cadenas de conexión SQL y claves JWT, utilizando encriptación AES, archivos XML, y una arquitectura desacoplada para conexiones asincrónicas.
+Propósito: Este módulo permite:
 
-#### COMPONENTES PRINCIPALES ######
+Encriptar una cadena de conexión SQL en un archivo XML.
 
-#### CryptoHelperLib ######
+Sincronizar la cadena encriptada y la clave JWT en un archivo appsettings.json..
 
-Encripta y desencripta texto usando AES determinista.
+Desencriptar la cadena para obtener una instancia blindada de conexión (IDbHelperAsync).
 
-Clave base fija: "xxxxxxx"
+Todo el flujo está diseñado para trazabilidad quirúrgica, sin ambigüedad ni estado compartido.
 
-Salt fijo: "xxxxxxxx"
+Estructura del Proyecto:
 
-Tamaño de clave: 256 bits
+FileHelperLib.cs → Encriptación XML + sincronización JSON
 
-### Métodos: ###
+JwtHelperLib.cs → Encriptación y desencriptación JWT
 
-EncryptAES(textoPlano, password, bits)
+ConexionFactory.cs → Obtención de conexión blindada
 
-DecryptAES(textoCifrado, password, bits)
+ConnectionString.xml → Archivo fuente con cadena de conexión
 
-EncryptTexto(textoPlano)
+appsettings.json → Archivo destino sincronizado
 
-DecryptTexto(textoCifrado)
+Requisitos:
 
-JwtHelperLib
+.NET Framework o .NET Core compatible con System.Xml y System.Text.Json.
 
-Genera claves JWT encriptadas con AES.
+Archivo ConnectionString.xml ubicado en %TEMP%\DDPOS\ConnectionString.xml.
 
-##### Métodos: ####
+Clases CryptoHelperLib, JwtHelperLib, DbHelperLibAsync implementadas y referenciadas.
 
-GenerarJwtKeyEncriptada(clavePlano)
+Uso:
 
-ObtenerJwtKeyDesencriptada(claveEncriptada)
+Encriptar cadena en XML y sincronizar JSON FileHelperLib.EncriptarCadenaConexion();
 
-##### FileHelperLib ####
+Encripta el atributo DBcnString en ConnectionString.xml usando AES.
 
-Administra el archivo XML ConnectionString.xml en AppData.
+Crea appsettings.json con:
 
-Encripta y desencripta la cadena de conexión.
+Cadena encriptada.
 
-Sincroniza con appsettings.json si no existe.
+Clave JWT encriptada.
 
-Constantes:
+Configuración de logging.
 
-XmlPath: ruta en AppData
+Obtener cadena desencriptada string cadena = FileHelperLib.DesencriptarCadenaConexion();
 
-AtributoConexion: "DBcnString"
+Devuelve la cadena original en texto plano.
 
-PrefijoEncriptado: "ENC:"
+Si hay errores, devuelve mensaje trazable.
 
-Métodos:
+Obtener conexión blindada IDbHelperAsync conexion = ConexionFactory.GetConexion();
 
-AsegurarArchivoEnAppData()
+Devuelve instancia de DbHelperLibAsync con cadena desencriptada.
 
-EncriptarCadenaConexion()
+Lanza excepción si la cadena no es válida.
 
-DesencriptarCadenaConexion()
+Detalles de Encriptación:
 
-SincronizarAppSettings(cadenaEncriptada, claveJwtPlano)
+XML (AES)
 
-ConexionFactory
+Prefijo: ENC:
 
-Fábrica técnica que devuelve una instancia blindada de IDbHelperAsync.
+Algoritmo: AES con clave fija (ClaveBaseAES) y tamaño (KeySizeAES)
 
-Método:
+Método: CryptoHelperLib.EncryptAES(...)
 
-GetConexion(): desencripta desde XML y retorna DbHelperLibAsync
+JSON (JWT)
 
-DbHelperLibAsync
+Clave JWT encriptada con AES y prefijo ENC:
 
-Implementa conexión SQL asincrónica con reconexión y pooling.
+Método: JwtHelperLib.GenerarJwtKeyEncriptada(...)
 
-Constructor:
+Ejemplo de appsettings.json generado:
 
-DbHelperLibAsync(string connection)
+{ "ConnectionStrings": { "SqlServer": "ENC:..." }, "Jwt": { "Key": "ENC:...", "Issuer": "Auth.JwtWorkerService", "Audience": "WinFormsClient" }, "Logging": { "LogLevel": { "Default": "Information", "Microsoft": "Warning", "Microsoft.Hosting.Lifetime": "Information" } } }
 
-Métodos:
+Validaciones y Diagnóstico:
 
-GetOpenConnectionAsync(): abre conexión con reintentos
+Logging técnico por consola.
 
-CloseConnection(): cierra manualmente
+Validación de existencia de archivos.
 
-Dispose(): libera recursos
+Prefijo ENC: para trazabilidad.
 
-Propiedades:
+Sincronización idempotente: no reescribe si ya está encriptado.
 
-ErrorMessage
+Buenas prácticas:
 
-ConnectionString
+No modificar manualmente los archivos XML o JSON.
 
-IsConnected
+Validar que la cadena no esté vacía antes de encriptar.
 
-CommandTimeoutProp = 30
+Mantener CryptoHelperLib.ClaveBaseAES en entorno seguro.
 
-ConnectionTimeoutProp = 15
-
-RetryCountProp = 3
-
-RetryDelayMsProp = 2000
-
-MaxPoolSizeProp = 100
-
-MinPoolSizeProp = 5
-
-PoolingEnabled = true
-
-IDbHelperAsync (Interfaz)
-
-Define el contrato para acceso asincrónico a SQL.
-
-Métodos:
-
-GetOpenConnectionAsync()
-
-Propiedades:
-
-ErrorMessage
-
-ConnectionString
-
-IsConnected
-
-CommandTimeoutProp
-
-ConnectionTimeoutProp
-
-RetryCountProp
-
-RetryDelayMsProp
-
-MaxPoolSizeProp
-
-MinPoolSizeProp
-
-PoolingEnabled
-
-#### ------ ARCHIVOS UTILIZADOS ------- #### 
-
-ConnectionString.xml → ubicado en %AppData%\DDPOS\
-
-appsettings.json → generado automáticamente si no existe
-
-#### -----  SEGURIDAD ------- #### 
-
-Encriptación AES con clave derivada y salt fijo.
-
-Prefijo "ENC:" para identificar cadenas encriptadas.
-
-JWT sincronizado con appsettings.json..
-
-Reconexión automática en SQL hasta 3 intentos.
-
-#### -------  VENTAJAS ------ ####
-
-Seguridad robusta para cadenas sensibles.
-
-Modularidad y desacoplamiento.
-
-Compatible con .NET 8 y Microsoft.Data.SqlClient.
-
-Ideal para aplicaciones WinForms, WPF, Worker Services, etc.
-
-#### --------  REQUISITOS ------- ####
-
-.NET 8
-
-Microsoft.Data.SqlClient
-
-System.Security.Cryptography
-
-System.Text.Json
+Usar ConexionFactory para obtener la conexión, nunca directamente desde XML.
