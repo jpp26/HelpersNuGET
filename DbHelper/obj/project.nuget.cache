@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sJiksABt54I=",
+  "dgSpecHash": "2kPsNAJ7hro=",
   "success": true,
-  "projectFilePath": "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\DbHelper\\DbHelper.csproj",
+  "projectFilePath": "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\DbHelper\\DbHelper.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jpp26\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\jpp26\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",

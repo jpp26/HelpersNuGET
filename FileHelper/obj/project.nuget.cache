@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8wINeqQzb2E=",
+  "dgSpecHash": "85LCQVMuiSs=",
   "success": true,
-  "projectFilePath": "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\FileHelper\\FileHelper.csproj",
+  "projectFilePath": "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\FileHelper\\FileHelper.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jpp26\\.nuget\\packages\\security\\1.0.0\\security.1.0.0.nupkg.sha512"
   ],

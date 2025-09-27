@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\FileHelper\\FileHelper.csproj": {}
+    "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\FileHelper\\FileHelper.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\FileHelper\\FileHelper.csproj": {
+    "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\FileHelper\\FileHelper.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\FileHelper\\FileHelper.csproj",
+        "projectUniqueName": "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\FileHelper\\FileHelper.csproj",
         "projectName": "FileHelper",
-        "projectPath": "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\FileHelper\\FileHelper.csproj",
+        "projectPath": "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\FileHelper\\FileHelper.csproj",
         "packagesPath": "C:\\Users\\jpp26\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\FileHelper\\obj\\",
+        "outputPath": "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\FileHelper\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\Security\\Security.csproj": {
-                "projectPath": "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\Security\\Security.csproj"
+              "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\Security\\Security.csproj": {
+                "projectPath": "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\Security\\Security.csproj"
               }
             }
           }
@@ -73,14 +73,14 @@
         }
       }
     },
-    "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\Security\\Security.csproj": {
+    "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\Security\\Security.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\Security\\Security.csproj",
+        "projectUniqueName": "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\Security\\Security.csproj",
         "projectName": "Security",
-        "projectPath": "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\Security\\Security.csproj",
+        "projectPath": "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\Security\\Security.csproj",
         "packagesPath": "C:\\Users\\jpp26\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\Security\\obj\\",
+        "outputPath": "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\Security\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

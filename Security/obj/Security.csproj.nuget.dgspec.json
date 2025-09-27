@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\Security\\Security.csproj": {}
+    "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\Security\\Security.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\Security\\Security.csproj": {
+    "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\Security\\Security.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\Security\\Security.csproj",
+        "projectUniqueName": "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\Security\\Security.csproj",
         "projectName": "Security",
-        "projectPath": "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\Security\\Security.csproj",
+        "projectPath": "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\Security\\Security.csproj",
         "packagesPath": "C:\\Users\\jpp26\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jpp26\\Source\\Repos\\HelpersNuGET\\Security\\obj\\",
+        "outputPath": "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\Security\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

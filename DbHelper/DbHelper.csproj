@@ -1,17 +1,35 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.1" />
-  </ItemGroup>
+		<!-- Metadatos para NuGet -->
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageId>SafeConnString</PackageId>
+		<Version>1.0.6</Version>
+		<Authors>Juan Pablo Prieto</Authors>
+		<Owners>Juan Pablo Prieto</Owners>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Company>DDCREATIVE</Company>
+		<Description>Helpers para crear, encriptar y desencriptar cadenas de conexión SQL en formato XML/JSON</Description>
+		<PackageTags>helpers;utils;security;database;sql;connectionstring</PackageTags>
+		<RepositoryUrl>https://github.com/jpp26/HelpersNuGET</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageProjectUrl>https://github.com/jpp26/HelpersNuGET</PackageProjectUrl>
+		<PackageIconUrl>https://raw.githubusercontent.com/jpp26/HelpersNuGET/main/icon.png</PackageIconUrl>
+		<!-- opcional -->
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\FileHelper\FileHelper.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\FileHelper\FileHelper.csproj" />
+	</ItemGroup>
 
 </Project>
