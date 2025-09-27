@@ -1,5 +1,7 @@
 ﻿using CryptoHelper;
 using Security;
+using System;
+using System.IO;
 using System.Xml;
 
 namespace FileHelper

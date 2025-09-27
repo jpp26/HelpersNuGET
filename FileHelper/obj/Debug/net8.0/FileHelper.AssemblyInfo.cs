@@ -11,13 +11,15 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("FileHelper")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("DDCREATIVE")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyDescriptionAttribute("Helpers para lectura y escritura de archivos XML/JSON")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e8b30d07e9c419f2669097b06da444ea4e1d266d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d9cde1fb6e65e5ef4714039165d37d3bca36f449")]
 [assembly: System.Reflection.AssemblyProductAttribute("FileHelper")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FileHelper")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
+[assembly: System.Reflection.AssemblyMetadataAttribute("RepositoryUrl", "https://github.com/jpp26/HelpersNuGET")]
 
 // Generado por la clase WriteCodeFragment de MSBuild.
 

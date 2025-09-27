@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "85LCQVMuiSs=",
+  "dgSpecHash": "gSeEnHdKGhc=",
   "success": true,
   "projectFilePath": "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\FileHelper\\FileHelper.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\jpp26\\.nuget\\packages\\security\\1.0.0\\security.1.0.0.nupkg.sha512"
+    "C:\\Users\\jpp26\\.nuget\\packages\\security\\1.0.0\\security.1.0.0.nupkg.sha512",
+    "C:\\Users\\jpp26\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.14\\microsoft.netcore.app.ref.8.0.14.nupkg.sha512",
+    "C:\\Users\\jpp26\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.14\\microsoft.windowsdesktop.app.ref.8.0.14.nupkg.sha512",
+    "C:\\Users\\jpp26\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.14\\microsoft.aspnetcore.app.ref.8.0.14.nupkg.sha512"
   ],
   "logs": []
 }

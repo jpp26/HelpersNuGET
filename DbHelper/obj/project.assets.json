@@ -1628,7 +1628,8 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "FileHelper >= 1.0.0",
-      "Microsoft.Data.SqlClient >= 6.1.1"
+      "Microsoft.Data.SqlClient >= 6.1.1",
+      "Security >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -1636,11 +1637,11 @@
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "1.0.6",
+    "version": "1.0.7",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\DbHelper\\DbHelper.csproj",
+      "projectUniqueName": "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\DbHelper\\SafeConnString.csproj",
       "projectName": "SafeConnString",
-      "projectPath": "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\DbHelper\\DbHelper.csproj",
+      "projectPath": "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\DbHelper\\SafeConnString.csproj",
       "packagesPath": "C:\\Users\\jpp26\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\DbHelper\\obj\\",
       "projectStyle": "PackageReference",
@@ -1665,6 +1666,9 @@
           "projectReferences": {
             "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\FileHelper\\FileHelper.csproj": {
               "projectPath": "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\FileHelper\\FileHelper.csproj"
+            },
+            "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\Security\\Security.csproj": {
+              "projectPath": "C:\\Users\\jpp26\\source\\repos\\HelpersNuGET\\Security\\Security.csproj"
             }
           }
         }
