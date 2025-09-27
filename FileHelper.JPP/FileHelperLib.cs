@@ -1,10 +1,11 @@
 ﻿using CryptoHelper;
 using Security;
+using Security.JPP;
 using System;
 using System.IO;
 using System.Xml;
 
-namespace FileHelper
+namespace FileHelper.JPP
 {
     /// <summary>
     /// Helper para operaciones sobre archivos XML de configuración.
@@ -138,6 +139,5 @@ namespace FileHelper
 
         }
         #endregion
-
     }
 }

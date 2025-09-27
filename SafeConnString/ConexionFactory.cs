@@ -1,5 +1,5 @@
 ﻿using DbHelper;
-using FileHelper;
+using FileHelper.JPP;
 using System;
 
 namespace CryptoHelperLib
