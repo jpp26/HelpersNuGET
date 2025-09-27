@@ -1,4 +1,4 @@
-Encriptación y Sincronización de Cadena de Conexión (XML + JSON)
+### Encriptación y Sincronización de Cadena de Conexión (XML + JSON) ###
 
 Ubicación del archivo XML: Antes de iniciar el proceso de encriptación, el archivo ConnectionString.xml debe estar ubicado en la ruta temporal del usuario: %TEMP%\DDPOS\ConnectionString.xml
 
