@@ -32,7 +32,12 @@ Si necesitas detalles técnicos favor visitar el repositorio.
 
 Funcionamiento:
 
-Encriptación y Sincronización de Cadena de Conexión (XML + JSON) Ubicación del archivo XML: Antes de iniciar el proceso de encriptación, el archivo ConnectionString.xml debe estar ubicado en la ruta temporal del usuario: %TEMP%\DDPOS\ConnectionString.xml Se genera dos archivos de conexión, uno XML y otro JSON, xlm es ideal para la Conexion de app desktop y Json para api/web.
+Encriptación y Sincronización de Cadena de Conexión (XML + JSON) Ubicación del archivo XML: Antes de iniciar el proceso de encriptación, el archivo ConnectionString.xml debe estar ubicado en la ruta temporal del usuario: %TEMP%\DDPOS\ConnectionString.xml 
+Ejemplo de candena de conexion :
+ ConnectionString.xml: <?xml version="1.0"?>
+<database DBcnString="Server=localhost;Database=ERP_DDPOS_PROD;User Id=ArtesanoDBO;Password=Mopbi2025;TrustServerCertificate=True;">
+</database>
+Se genera dos archivos de conexión, uno XML y otro JSON, xlm es ideal para la Conexion de app desktop y Json para api/web.
 
 El sistema se encargará de moverlo automáticamente a la ruta definitiva: %APPDATA%\DDPOS\ConnectionString.xml Esto se realiza mediante el método FileHelperLib.AsegurarArchivoEnAppData().
 
