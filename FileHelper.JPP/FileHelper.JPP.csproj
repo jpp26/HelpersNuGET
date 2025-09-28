@@ -5,6 +5,8 @@
 		<RootNamespace>FileHelper.JPP</RootNamespace>
 	</PropertyGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\Security.JPP\Security.JPP.csproj" />
+	  <Reference Include="Security.JPP">
+	    <HintPath>..\Security.JPP\bin\Release\net8.0\Security.JPP.dll</HintPath>
+	  </Reference>
 	</ItemGroup>
 </Project>

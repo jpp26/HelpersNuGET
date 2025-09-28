@@ -1,35 +1,45 @@
-﻿using System.Data;
-using Microsoft.Data.SqlClient;
-using System.Threading.Tasks;
+﻿using Microsoft.Data.SqlClient;
 using System;
+using System.Data;
+using System.Diagnostics;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace DbHelper
 {
     public class DbHelperLibAsync : IDisposable, IDbHelperAsync
     {
         #region Configuración interna
-        private const int CommandTimeout = 30;
-        private const int ConnectionTimeout = 15;
-        private const int RetryCount = 3;
-        private const int RetryDelayMs = 2000;
-        private const int MaxPoolSize = 100;
-        private const int MinPoolSize = 5;
-        private const bool EnablePooling = true;
+        private const int CommandTimeoutConst = 30;
+        private const int ConnectionTimeoutConst = 30;
+        private const int RetryCountConst = 3;
+        private const int RetryDelayMsConst = 500;
+        private const int MaxPoolSizeConst = 100;
+        private const int MinPoolSizeConst = 5;
+        private const bool EnablePoolingConst = true;
+        private const bool EnableMarsConst = true;
+        private const int LatenciaUmbralMs = 500;
         #endregion
         #region Estado interno
         private string _connectionString;
-        private SqlConnection? _sqlConnection;
         private string _errorMessage = string.Empty;
         private bool _disposed = false;
+        private long _ultimoTiempoConexionMs = -1;
+        private string _ultimoErrorTecnico = string.Empty;
         #endregion
-        #region Constructor con inyección de cadena de conexión
+        #region Ruta fija para log
+        private static readonly string LogFilePath = @"C:\ERP_DDPOS\ERPDDPOS\ERPDDPOS\ERPDDPOS\bin\x64\Debug\net8.0-windows10.0.19041.0\dbhelper.log";
+        #endregion
+        #region Constructor con validación y configuración
         public DbHelperLibAsync(string connection)
         {
             _connectionString = connection?.Trim() ?? string.Empty;
 
-            if (string.IsNullOrWhiteSpace(_connectionString))
+            if (!IsValidConnectionString(_connectionString))
             {
-                _errorMessage = "Connection string cannot be empty.";
+                _errorMessage = "Cadena de conexión inválida o vacía.";
+                _connectionString = string.Empty;
+                LogToFile(_errorMessage);
                 return;
             }
 
@@ -37,71 +47,104 @@ namespace DbHelper
             {
                 var builder = new SqlConnectionStringBuilder(_connectionString)
                 {
-                    ConnectTimeout = ConnectionTimeout,
-                    MaxPoolSize = MaxPoolSize,
-                    MinPoolSize = MinPoolSize,
-                    Pooling = EnablePooling
+                    ConnectTimeout = ConnectionTimeoutConst,
+                    MaxPoolSize = MaxPoolSizeConst,
+                    MinPoolSize = MinPoolSizeConst,
+                    Pooling = EnablePoolingConst,
+                    MultipleActiveResultSets = EnableMarsConst
                 };
 
                 _connectionString = builder.ConnectionString;
-                _sqlConnection = new SqlConnection(_connectionString);
             }
             catch (Exception ex)
             {
-                _errorMessage = $"Connection string build error: {ex.Message}";
-                _sqlConnection = null;
+                _errorMessage = $"Error al construir la cadena de conexión: {ex.Message}";
+                _connectionString = string.Empty;
+                LogToFile(_errorMessage);
             }
         }
         #endregion
-        #region Método para obtener la conexión abierta con lógica de reconexión
+        #region Validación de cadena de conexión
+        private bool IsValidConnectionString(string conn)
+        {
+            try
+            {
+                var builder = new SqlConnectionStringBuilder(conn);
+                return !string.IsNullOrWhiteSpace(builder.DataSource) &&
+                       !string.IsNullOrWhiteSpace(builder.InitialCatalog);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+        #region Método para obtener la conexión abierta con trazabilidad
         public async Task<IDbConnection?> GetOpenConnectionAsync()
         {
-            if (_sqlConnection == null)
+            if (string.IsNullOrWhiteSpace(_connectionString))
             {
-                _errorMessage = "Connection is not initialized.";
+                _errorMessage = "Cadena de conexión no inicializada.";
+                LogToFile(_errorMessage);
                 return null;
             }
 
-            if (_sqlConnection.State == ConnectionState.Broken || _sqlConnection.State == ConnectionState.Closed)
-            {
-                _sqlConnection.Dispose();
-                _sqlConnection = new SqlConnection(_connectionString);
-            }
-
             int attempts = 0;
-            while (attempts < RetryCount)
+            Exception? lastError = null;
+
+            while (attempts < RetryCountConst)
             {
                 try
                 {
-                    if (_sqlConnection.State != ConnectionState.Open)
+                    var sw = Stopwatch.StartNew();
+                    var connection = new SqlConnection(_connectionString);
+                    await connection.OpenAsync();
+                    sw.Stop();
+
+                    _ultimoTiempoConexionMs = sw.ElapsedMilliseconds;
+
+                    if (_ultimoTiempoConexionMs > LatenciaUmbralMs)
                     {
-                        await _sqlConnection.OpenAsync();
+                        LogToFile($"⏱️ Apertura lenta: {_ultimoTiempoConexionMs} ms");
                     }
-                    return _sqlConnection;
+                    else
+                    {
+                        LogToFile($"✅ Conexión abierta en {_ultimoTiempoConexionMs} ms");
+                    }
+
+                    return connection;
                 }
                 catch (SqlException sqlEx)
                 {
                     attempts++;
-                    _errorMessage = $"SQL Error: {sqlEx.Message} (Code: {sqlEx.Number}). Attempt {attempts} of {RetryCount}.";
-                    await Task.Delay(RetryDelayMs);
+                    _ultimoErrorTecnico = $"SQL Error {sqlEx.Number}: {sqlEx.Message}\n{sqlEx.StackTrace}";
+                    _errorMessage = $"Error SQL: {sqlEx.Message} (Código: {sqlEx.Number}). Intento {attempts} de {RetryCountConst}.";
+                    lastError = sqlEx;
+                    LogToFile(_errorMessage);
+                    await Task.Delay(RetryDelayMsConst);
                 }
                 catch (Exception ex)
                 {
-                    _errorMessage = $"General error: {ex.Message}";
-                    return null;
+                    _ultimoErrorTecnico = $"General Error: {ex.Message}\n{ex.StackTrace}";
+                    _errorMessage = $"Error general: {ex.Message}";
+                    lastError = ex;
+                    LogToFile(_errorMessage);
+                    break;
                 }
             }
 
-            _errorMessage = "Failed to open connection after multiple attempts.";
+            _errorMessage = "❌ No se pudo abrir la conexión tras múltiples intentos.";
+            LogToFile(_errorMessage);
             return null;
         }
         #endregion
         #region Método para cerrar la conexión manualmente
-        public void CloseConnection()
+        public void CloseConnection(IDbConnection? connection)
         {
-            if (_sqlConnection != null && _sqlConnection.State != ConnectionState.Closed)
+            if (connection != null && connection.State != ConnectionState.Closed)
             {
-                _sqlConnection.Close();
+                connection.Close();
+                connection.Dispose();
             }
         }
         #endregion
@@ -112,17 +155,15 @@ namespace DbHelper
 
             if (disposing)
             {
-                CloseConnection();
-                _sqlConnection?.Dispose();
+                _disposed = true;
             }
 
-            _disposed = true;
+            GC.SuppressFinalize(this);
         }
 
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         ~DbHelperLibAsync()
@@ -131,48 +172,46 @@ namespace DbHelper
         }
         #endregion
         #region Propiedades públicas para diagnóstico y configuración
-        public string ErrorMessage
+        public string ErrorMessage => _errorMessage;
+        public string ConnectionString => _connectionString;
+        public int CommandTimeout => CommandTimeoutConst;
+        public int ConnectionTimeout => ConnectionTimeoutConst;
+        public int RetryCount => RetryCountConst;
+        public int RetryDelayMs => RetryDelayMsConst;
+        public int MaxPoolSize => MaxPoolSizeConst;
+        public int MinPoolSize => MinPoolSizeConst;
+        public bool PoolingEnabled => EnablePoolingConst;
+        public long UltimoTiempoConexionMs => _ultimoTiempoConexionMs;
+        public string UltimoErrorTecnico => _ultimoErrorTecnico;
+        #endregion
+        #region Diagnóstico en caliente
+        public string DiagnosticoActual()
         {
-            get { return _errorMessage; }
+            return $@"
+🔍 Diagnóstico de conexión:
+- Tiempo última conexión: {_ultimoTiempoConexionMs} ms
+- Último error técnico: {_ultimoErrorTecnico}
+- Cadena activa: {_connectionString}
+- Pooling: {(EnablePoolingConst ? "Activado" : "Desactivado")}
+- MARS: {(EnableMarsConst ? "Activado" : "Desactivado")}
+- Timeout conexión: {ConnectionTimeoutConst}s
+- Timeout comandos: {CommandTimeoutConst}s
+";
         }
-        public string ConnectionString
+        #endregion
+        #region Registro en archivo de texto
+        private void LogToFile(string mensaje)
         {
-            get { return _connectionString; }
-        }
-        public bool IsConnected
-        {
-            get
+            try
             {
-                return _sqlConnection != null && _sqlConnection.State == ConnectionState.Open;
+                Directory.CreateDirectory(Path.GetDirectoryName(LogFilePath)!);
+                var log = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff} | {mensaje}\n";
+                File.AppendAllText(LogFilePath, log);
             }
-        }
-        public int CommandTimeoutProp
-        {
-            get { return CommandTimeout; }
-        }
-        public int ConnectionTimeoutProp
-        {
-            get { return ConnectionTimeout; }
-        }
-        public int RetryCountProp
-        {
-            get { return RetryCount; }
-        }
-        public int RetryDelayMsProp
-        {
-            get { return RetryDelayMs; }
-        }
-        public int MaxPoolSizeProp
-        {
-            get { return MaxPoolSize; }
-        }
-        public int MinPoolSizeProp
-        {
-            get { return MinPoolSize; }
-        }
-        public bool PoolingEnabled
-        {
-            get { return EnablePooling; }
+            catch
+            {
+                // Silenciar errores de log para no romper flujo principal
+            }
         }
         #endregion
     }

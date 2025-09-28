@@ -8,13 +8,12 @@ namespace DbHelper
         Task<IDbConnection?> GetOpenConnectionAsync();
         string ErrorMessage { get; }
         string ConnectionString { get; }
-        bool IsConnected { get; }
-        int CommandTimeoutProp { get; }
-        int ConnectionTimeoutProp { get; }
-        int RetryCountProp { get; }
-        int RetryDelayMsProp { get; }
-        int MaxPoolSizeProp { get; }
-        int MinPoolSizeProp { get; }
+        int CommandTimeout { get; }
+        int ConnectionTimeout { get; }
+        int RetryCount { get; }
+        int RetryDelayMs { get; }
+        int MaxPoolSize { get; }
+        int MinPoolSize { get; }
         bool PoolingEnabled { get; }
     }
 }

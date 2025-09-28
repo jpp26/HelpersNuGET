@@ -1,18 +1,18 @@
 ﻿using CryptoHelper;
-using Security;
 using Security.JPP;
 using System;
 using System.IO;
+using System.Text.Json;
 using System.Xml;
 
-namespace FileHelper.JPP
+namespace FileHelper
 {
     /// <summary>
     /// Helper para operaciones sobre archivos XML de configuración.
     /// </summary>
     public static class FileHelperLib
     {
-        public static readonly string XmlPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),"DDPOS", "ConnectionString.xml");
+        public static readonly string XmlPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DDPOS", "ConnectionString.xml");
         public const string AtributoConexion = "DBcnString";
         public const string PrefijoEncriptado = "ENC:";
         #region Archivo base
@@ -90,7 +90,7 @@ namespace FileHelper.JPP
                 dbcnString = dbcnString.Substring(PrefijoEncriptado.Length);
             }
             Console.WriteLine($"Antes de desencriptar: {dbcnString}");
-            string desencriptado = CryptoHelperLib.DecryptAES(dbcnString,CryptoHelperLib.ClaveBaseAES,CryptoHelperLib.KeySizeAES);
+            string desencriptado = CryptoHelperLib.DecryptAES(dbcnString, CryptoHelperLib.ClaveBaseAES, CryptoHelperLib.KeySizeAES);
             Console.WriteLine($"Después de desencriptar: {desencriptado}");
             if (string.IsNullOrWhiteSpace(desencriptado))
             {
@@ -138,6 +138,74 @@ namespace FileHelper.JPP
             }
 
         }
+        #endregion
+        #region Desencriptar configuración completa desde appsettings.json
+
+        /// <summary>
+        /// Extrae y desencripta cadena SQL, clave JWT, issuer y audience desde appsettings.json.
+        /// </summary>
+        public static (string CadenaSql, string ClaveJwt, string Issuer, string Audience) DesencriptarConfiguracionDesdeJson()
+        {
+            string jsonPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DDPOS", "appsettings.json");
+
+            if (!File.Exists(jsonPath))
+                throw new InvalidOperationException("❌ El archivo `appsettings.json` no existe.");
+
+            try
+            {
+                string json = File.ReadAllText(jsonPath);
+                using var doc = JsonDocument.Parse(json);
+                var root = doc.RootElement;
+
+                // 🔓 Cadena SQL
+                if (!root.TryGetProperty("ConnectionStrings", out var connSection) ||
+                    !connSection.TryGetProperty("SqlServer", out var sqlProp))
+                    throw new InvalidOperationException("❌ No se encontró `ConnectionStrings.SqlServer`.");
+
+                string sqlCifrada = sqlProp.GetString() ?? "";
+                if (string.IsNullOrWhiteSpace(sqlCifrada))
+                    throw new InvalidOperationException("❌ La cadena SQL está vacía.");
+
+                if (sqlCifrada.StartsWith(PrefijoEncriptado))
+                    sqlCifrada = sqlCifrada.Substring(PrefijoEncriptado.Length);
+
+                string cadenaSql = JwtHelperLib.ObtenerJwtKeyDesencriptada(sqlCifrada);
+                if (string.IsNullOrWhiteSpace(cadenaSql))
+                    throw new InvalidOperationException("❌ La cadena SQL no fue desencriptada correctamente.");
+
+                // 🔓 Clave JWT
+                if (!root.TryGetProperty("Jwt", out var jwtSection) ||
+                    !jwtSection.TryGetProperty("Key", out var keyProp))
+                    throw new InvalidOperationException("❌ No se encontró `Jwt:Key`.");
+
+                string jwtCifrada = keyProp.GetString() ?? "";
+                if (string.IsNullOrWhiteSpace(jwtCifrada))
+                    throw new InvalidOperationException("❌ La clave JWT está vacía.");
+
+                if (jwtCifrada.StartsWith(PrefijoEncriptado))
+                    jwtCifrada = jwtCifrada.Substring(PrefijoEncriptado.Length);
+
+                string claveJwt = JwtHelperLib.ObtenerJwtKeyDesencriptada(jwtCifrada);
+                if (string.IsNullOrWhiteSpace(claveJwt))
+                    throw new InvalidOperationException("❌ La clave JWT no fue desencriptada correctamente.");
+
+                // 🔐 Issuer y Audience
+                string issuer = jwtSection.TryGetProperty("Issuer", out var issuerProp) ? issuerProp.GetString() ?? "" : "";
+                string audience = jwtSection.TryGetProperty("Audience", out var audienceProp) ? audienceProp.GetString() ?? "" : "";
+
+                if (string.IsNullOrWhiteSpace(issuer))
+                    throw new InvalidOperationException("❌ Issuer no definido.");
+                if (string.IsNullOrWhiteSpace(audience))
+                    throw new InvalidOperationException("❌ Audience no definido.");
+
+                return (cadenaSql, claveJwt, issuer, audience);
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException($"❌ Error al leer o desencriptar configuración JSON: {ex.Message}", ex);
+            }
+        }
+
         #endregion
     }
 }
