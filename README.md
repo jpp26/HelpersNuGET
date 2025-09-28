@@ -1,12 +1,44 @@
-### Encriptación y Sincronización de Cadena de Conexión (XML + JSON) ###
+Si estás desarrollando en .NET 8 y te importa la seguridad, la modularidad y el rendimiento, te recomiendo probar el paquete SafeConnString. Es una solución elegante y robusta para manejar cadenas de conexión SQL y claves JWT de forma segura.
 
-Ubicación del archivo XML: Antes de iniciar el proceso de encriptación, el archivo ConnectionString.xml debe estar ubicado en la ruta temporal del usuario: %TEMP%\DDPOS\ConnectionString.xml
+🔐 ¿Qué ofrece?
+
+Encriptación AES determinista para proteger datos sensibles.
+
+Gestión de claves JWT sincronizadas con appsettings.json.
+
+Almacenamiento seguro en XML Y JSON para cadena de conexion a BBDD dentro de %AppData%.
+
+Reconexión automática en SQL con pooling y reintentos.
+
+Arquitectura desacoplada y fácil de integrar.
+
+🧱 Ideal para:
+
+Aplicaciones WinForms, WPF, Worker Services
+
+Proyectos que usan Microsoft.Data.SqlClient
+
+Equipos que buscan seguridad sin complicarse
+
+💡 Ventajas:
+
+Seguridad sólida sin sacrificar simplicidad
+
+Compatible con buenas prácticas modernas
+
+Listo para producción en entornos exigentes.
+
+Si necesitas detalles técnicos favor visitar el repositorio.
+
+Funcionamiento:
+
+Encriptación y Sincronización de Cadena de Conexión (XML + JSON) Ubicación del archivo XML: Antes de iniciar el proceso de encriptación, el archivo ConnectionString.xml debe estar ubicado en la ruta temporal del usuario: %TEMP%\DDPOS\ConnectionString.xml Se genera dos archivos de conexión, uno XML y otro JSON, xlm es ideal para la Conexion de app desktop y Json para api/web.
 
 El sistema se encargará de moverlo automáticamente a la ruta definitiva: %APPDATA%\DDPOS\ConnectionString.xml Esto se realiza mediante el método FileHelperLib.AsegurarArchivoEnAppData().
 
 Propósito: Este módulo permite:
 
-Encriptar una cadena de conexión SQL en un archivo XML.
+Encriptar una cadena de conexión SQL en un archivo XML y Json.
 
 Sincronizar la cadena encriptada y la clave JWT en un archivo appsettings.json.
 
@@ -22,21 +54,11 @@ JwtHelperLib.cs → Encriptación y desencriptación JWT
 
 ConexionFactory.cs → Obtención de conexión blindada
 
-ConnectionString.xml → Archivo fuente con cadena de conexión
-
-appsettings.json → Archivo destino sincronizado
+ConnectionString.xml → Archivo fuente con cadena de conexión XML appsettings.json.json → Archivo fuente con cadena de conexión Json.
 
 Requisitos:
 
-.NET Framework o .NET Core compatible con System.Xml y System.Text.Json.
-
-Archivo ConnectionString.xml debe existir inicialmente en %TEMP%\DDPOS.
-
-Clases CryptoHelperLib, JwtHelperLib, DbHelperLibAsync implementadas y referenciadas.
-
-Cadena de conexión válida en texto plano dentro del atributo DBcnString del XML.
-
-Clave base AES (CryptoHelperLib.ClaveBaseAES) definida para realizar la encriptación.
+.NET 8. Archivo ConnectionString.xml debe existir inicialmente en %TEMP%\DDPOS. Clases CryptoHelperLib, JwtHelperLib, DbHelperLibAsync implementadas y referenciadas. Cadena de conexión válida en texto plano dentro del atributo DBcnString del XML. Clave base AES (CryptoHelperLib.ClaveBaseAES) definida para realizar la encriptación.
 
 Tamaño de clave AES (CryptoHelperLib.KeySizeAES) especificado para el algoritmo.
 
@@ -56,7 +78,7 @@ Devuelve la cadena original en texto plano.
 
 Si hay errores, devuelve mensaje trazable.
 
-Obtener conexión blindada Método: ConexionFactory.GetConexion();
+Obtener conexión blindada Método: ConexionFactory.GetConexion(); → XML Obtener conexión blindada Método: ConexionFactory.GetConexionJSON(); → JSON
 
 Devuelve instancia de DbHelperLibAsync con cadena desencriptada.
 
@@ -64,7 +86,7 @@ Lanza excepción si la cadena no es válida.
 
 Detalles de Encriptación:
 
-XML (AES)
+XML (AES) JSON (AES)
 
 Prefijo: ENC:
 
@@ -100,4 +122,4 @@ Validar que la cadena no esté vacía antes de encriptar.
 
 Mantener CryptoHelperLib.ClaveBaseAES en entorno seguro.
 
-Usar ConexionFactory para obtener la conexión, nunca directamente desde XML.
+Usar ConexionFactory para obtener la conexión, nunca directamente desde XML o de JSON.
