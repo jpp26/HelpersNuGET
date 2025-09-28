@@ -5,7 +5,7 @@
 
 		<!-- Identidad del paquete -->
 		<PackageId>SafeConnString</PackageId>
-		<Version>1.0.14</Version>
+		<Version>1.0.15</Version>
 		<Authors>Juan Pablo Prieto</Authors>
 		<Company>DDCREATIVE</Company>
 		<Owners>Juan Pablo Prieto</Owners>
@@ -25,16 +25,19 @@
 		<!-- Trazabilidad -->
 		<Copyright>Copyright © Juan Pablo Prieto 2025</Copyright>
 		<AssemblyTitle>SafeConnString</AssemblyTitle>
-		<AssemblyVersion>1.0.0.14</AssemblyVersion>
+		<AssemblyVersion>1.0.0.15</AssemblyVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.1" />
 	</ItemGroup>
-
 	<ItemGroup>
-	  <Reference Include="FileHelper.JPP">
-	    <HintPath>..\FileHelper.JPP\bin\Release\net8.0\FileHelper.JPP.dll</HintPath>
-	  </Reference>
+		<None Include="..\FileHelper.JPP\bin\Release\net8.0\FileHelper.JPP.dll"
+			  Pack="true"
+			  PackagePath="lib\net8.0\" />
+		<None Include="..\Security.JPP\bin\Release\net8.0\Security.JPP.dll"
+			  Pack="true"
+			  PackagePath="lib\net8.0\" />
 	</ItemGroup>
+
 </Project>
