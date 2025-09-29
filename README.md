@@ -2,23 +2,23 @@
 
 ## ¿Qué ofrece?
 
-Encriptación AES determinista para proteger datos sensibles.
+- Encriptación AES determinista para proteger datos sensibles.
 
-Gestión de claves JWT sincronizadas con appsettings.json.
+- Gestión de claves JWT sincronizadas con appsettings.json.
 
-Almacenamiento seguro en XML Y JSON para cadena de conexion a BBDD dentro de %AppData%.
+- Almacenamiento seguro en XML Y JSON para cadena de conexion a BBDD dentro de %AppData%.
 
-Reconexión automática en SQL con pooling y reintentos.
+- Reconexión automática en SQL con pooling y reintentos.
 
-Arquitectura desacoplada y fácil de integrar.
+- Arquitectura desacoplada y fácil de integrar.
 
 ## Ideal para:
 
-Aplicaciones WinForms, WPF, Worker Services
+-Aplicaciones WinForms, WPF, Worker Services
 
-Proyectos que usan Microsoft.Data.SqlClient
+-Proyectos que usan Microsoft.Data.SqlClient
 
-Equipos que buscan seguridad sin complicarse
+-Equipos que buscan seguridad sin complicarse
 
 ## Ventajas:
 
@@ -38,13 +38,9 @@ Se genera dos archivos de conexión, uno XML y otro JSON, xlm es ideal para la C
 El sistema se encargará de moverlo automáticamente a la ruta definitiva: %APPDATA%\DDPOS\ConnectionString.xml Esto se realiza mediante el método FileHelperLib.AsegurarArchivoEnAppData().
 
 ## Propósito: Este módulo permite:
-
 Encriptar una cadena de conexión SQL en un archivo XML y Json.
-
 Sincronizar la cadena encriptada y la clave JWT en un archivo appsettings.json.
-
 Desencriptar la cadena para obtener una instancia blindada de conexión (IDbHelperAsync).
-
 Todo el flujo está diseñado para trazabilidad quirúrgica, sin ambigüedad ni estado compartido.
 
 ## Estructura del Proyecto:
