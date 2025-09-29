@@ -60,6 +60,31 @@ Tamaño de clave AES (CryptoHelperLib.KeySizeAES) especificado para el algoritmo
 - Si hay errores, devuelve mensaje trazable.
 ### Obtener conexión blindada Método:
 ConexionFactory.GetConexion(); → XML Obtener conexión blindada Método: ConexionFactory.GetConexionJSON(); → JSON
+Implementación:
+public class ModuleRepository : IModuleRepository
+{
+    #region Inicialización
+
+    private readonly IDbHelperAsync _dbHelper;
+
+    public ModuleRepository()
+    {
+        _dbHelper = ConexionFactory.GetConexionJSON();
+        ConexionFactory.LogToFile("🟢 ModuloRepositorio inicializado.");
+    }
+
+    private async Task<IDbConnection> GetConnectionAsync()
+    {
+        var connection = await _dbHelper.GetOpenConnectionAsync();
+        if (connection == null)
+        {
+            ConexionFactory.LogToFile("❌ Error al obtener conexión.");
+            throw new InvalidOperationException($"No se pudo obtener una conexión válida. Detalle: {_dbHelper.ErrorMessage}");
+        }
+        return connection;
+    }
+    #endregion
+    ........... resto del código.
 
 ### Devuelve instancia de DbHelperLibAsync con cadena desencriptada.
 Lanza excepción si la cadena no es válida.
