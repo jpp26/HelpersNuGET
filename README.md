@@ -102,7 +102,7 @@ Cadena Json:
 
 Cadena XML: 
 <?xml version="1.0"?>
-<database DBcnString="ENC:z46TgqFRK7zy/CSFjWO6yXHWW2HNQFsvD8UqHkoDh/cruodbGolpxPfqYGQpCA2RLK5bx+sXb0jWitKnL9txSVmC9Ar8/1HeEDctrDUSRuVKdJOvX8y/VJ9L0ikLxGaqVEsQ41bjNj2gWMyBBEd1rERtnKfiwA46JPlHxjh/tbR6lDF8dk09eBn7pNbEwo+oEjrEMUh7Z0LvERQkZDRHCeCQ4E71nTkQIcDAxZ9l1mM4bIcVqRT7vaWkpsbr89+EoaCr9lOmFIlMRUTkvWkRzuCrg8oWhgYc8tWsxMvOD5w=">
+<database 'DBcnString="ENC:z46TgqFRK7zy/CSFjWO6yXHWW2HNQFsvD8UqHkoDh/cruodbGolpxPfqYGQpCA2RLK5bx+sXb0jWitKnL9txSVmC9Ar8/1HeEDctrDUSRuVKdJOvX8y/VJ9L0ikLxGaqVEsQ41bjNj2gWMyBBEd1rERtnKfiwA46JPlHxjh/tbR6lDF8dk09eBn7pNbEwo+oEjrEMUh7Z0LvERQkZDRHCeCQ4E71nTkQIcDAxZ9l1mM4bIcVqRT7vaWkpsbr89+EoaCr9lOmFIlMRUTkvWkRzuCrg8oWhgYc8tWsxMvOD5w=">
 </database>
 
 ## Validaciones y Diagnóstico:
