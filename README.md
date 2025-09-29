@@ -13,20 +13,15 @@
 - Arquitectura desacoplada y fácil de integrar.
 
 ## Ideal para:
-
--Aplicaciones WinForms, WPF, Worker Services
-
--Proyectos que usan Microsoft.Data.SqlClient
-
--Equipos que buscan seguridad sin complicarse
+-Aplicaciones WinForms, WPF, Worker Services.
+-Proyectos que usan Microsoft.Data.SqlClient.
+-Equipos que buscan seguridad sin complicarse.
 
 ## Ventajas:
 
-Seguridad sólida sin sacrificar simplicidad
-
-Compatible con buenas prácticas modernas
-
-Listo para producción en entornos exigentes.
+-Seguridad sólida sin sacrificar simplicidad.
+-Compatible con buenas prácticas modernas.
+-Listo para producción en entornos exigentes.
 # Funcionamiento.
 Encriptación y Sincronización de Cadena de Conexión (XML + JSON) Ubicación del archivo XML: Antes de iniciar el proceso de encriptación, el archivo ConnectionString.xml debe estar ubicado en la ruta temporal del usuario: %TEMP%\DDPOS\ConnectionString.xml 
 Ejemplo de candena de conexion :
@@ -38,20 +33,16 @@ Se genera dos archivos de conexión, uno XML y otro JSON, xlm es ideal para la C
 El sistema se encargará de moverlo automáticamente a la ruta definitiva: %APPDATA%\DDPOS\ConnectionString.xml Esto se realiza mediante el método FileHelperLib.AsegurarArchivoEnAppData().
 
 ## Propósito: Este módulo permite:
-Encriptar una cadena de conexión SQL en un archivo XML y Json.
-Sincronizar la cadena encriptada y la clave JWT en un archivo appsettings.json.
-Desencriptar la cadena para obtener una instancia blindada de conexión (IDbHelperAsync).
-Todo el flujo está diseñado para trazabilidad quirúrgica, sin ambigüedad ni estado compartido.
+- Encriptar una cadena de conexión SQL en un archivo XML y Json.
+- Sincronizar la cadena encriptada y la clave JWT en un archivo appsettings.json.
+- Desencriptar la cadena para obtener una instancia blindada de conexión (IDbHelperAsync).
+- Todo el flujo está diseñado para trazabilidad quirúrgica, sin ambigüedad ni estado compartido.
 
 ## Estructura del Proyecto:
-
-FileHelperLib.cs → Encriptación XML + sincronización JSON
-
-JwtHelperLib.cs → Encriptación y desencriptación JWT
-
-ConexionFactory.cs → Obtención de conexión blindada
-
-ConnectionString.xml → Archivo fuente con cadena de conexión XML appsettings.json.json → Archivo fuente con cadena de conexión Json.
+- FileHelperLib.cs → Encriptación XML + sincronización JSON.
+- JwtHelperLib.cs → Encriptación y desencriptación JWT.
+- ConexionFactory.cs → Obtención de conexión blindada.
+- ConnectionString.xml → Archivo fuente con cadena de conexión XML appsettings.json.json → Archivo fuente con cadena de conexión Json.
 
 ## Requisitos:
 
@@ -60,25 +51,17 @@ ConnectionString.xml → Archivo fuente con cadena de conexión XML appsettings.
 Tamaño de clave AES (CryptoHelperLib.KeySizeAES) especificado para el algoritmo.
 
 ## Uso:
+- Encriptar cadena en XML y sincronizar JSON Método: FileHelperLib.EncriptarCadenaConexion();
+- Verifica si el archivo XML existe en AppData. Si no, lo copia desde %TEMP%.
+- Encripta el atributo DBcnString usando AES.
+- Crea appsettings.json con la cadena encriptada, clave JWT y configuración de logging.
+  ### Obtener cadena desencriptada Método: FileHelperLib.DesencriptarCadenaConexion();
+- Devuelve la cadena original en texto plano.
+- Si hay errores, devuelve mensaje trazable.
+### Obtener conexión blindada Método:
+ConexionFactory.GetConexion(); → XML Obtener conexión blindada Método: ConexionFactory.GetConexionJSON(); → JSON
 
-Encriptar cadena en XML y sincronizar JSON Método: FileHelperLib.EncriptarCadenaConexion();
-
-Verifica si el archivo XML existe en AppData. Si no, lo copia desde %TEMP%.
-
-Encripta el atributo DBcnString usando AES.
-
-Crea appsettings.json con la cadena encriptada, clave JWT y configuración de logging.
-
-Obtener cadena desencriptada Método: FileHelperLib.DesencriptarCadenaConexion();
-
-Devuelve la cadena original en texto plano.
-
-Si hay errores, devuelve mensaje trazable.
-
-Obtener conexión blindada Método: ConexionFactory.GetConexion(); → XML Obtener conexión blindada Método: ConexionFactory.GetConexionJSON(); → JSON
-
-Devuelve instancia de DbHelperLibAsync con cadena desencriptada.
-
+### Devuelve instancia de DbHelperLibAsync con cadena desencriptada.
 Lanza excepción si la cadena no es válida.
 
 ## Detalles de Encriptación:
