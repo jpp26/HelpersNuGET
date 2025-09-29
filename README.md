@@ -63,19 +63,19 @@ ConexionFactory.GetConexion(); → XML Obtener conexión blindada Método: Conex
 #### Implementación:
 public class ModuleRepository : IModuleRepository
 {
-   ##### #region Inicialización
+   #### #region Inicialización
 
-    #### private readonly IDbHelperAsync _dbHelper;
+#####    private readonly IDbHelperAsync _dbHelper;
 
     public ModuleRepository()
     {
-        _dbHelper = ConexionFactory.GetConexionJSON();
+#####      _dbHelper = ConexionFactory.GetConexionJSON();
         ConexionFactory.LogToFile("🟢 ModuloRepositorio inicializado.");
     }
 
     private async Task<IDbConnection> GetConnectionAsync()
     {
-        var connection = await _dbHelper.GetOpenConnectionAsync();
+  #####    var connection = await _dbHelper.GetOpenConnectionAsync();
         if (connection == null)
         {
             ConexionFactory.LogToFile("❌ Error al obtener conexión.");
