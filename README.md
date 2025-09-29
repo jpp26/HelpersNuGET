@@ -1,6 +1,6 @@
-Si estás desarrollando en .NET 8 y te importa la seguridad, la modularidad y el rendimiento, te recomiendo probar el paquete SafeConnString. Es una solución elegante y robusta para manejar cadenas de conexión SQL y claves JWT de forma segura.
+# Si estás desarrollando en .NET 8 y te importa la seguridad, la modularidad y el rendimiento, te recomiendo probar el paquete SafeConnString. Es una solución elegante y robusta para manejar cadenas de conexión SQL y claves JWT de forma segura.
 
-🔐 ¿Qué ofrece?
+## ¿Qué ofrece?
 
 Encriptación AES determinista para proteger datos sensibles.
 
@@ -12,7 +12,7 @@ Reconexión automática en SQL con pooling y reintentos.
 
 Arquitectura desacoplada y fácil de integrar.
 
-🧱 Ideal para:
+## Ideal para:
 
 Aplicaciones WinForms, WPF, Worker Services
 
@@ -20,14 +20,14 @@ Proyectos que usan Microsoft.Data.SqlClient
 
 Equipos que buscan seguridad sin complicarse
 
-💡 Ventajas:
+## Ventajas:
 
 Seguridad sólida sin sacrificar simplicidad
 
 Compatible con buenas prácticas modernas
 
 Listo para producción en entornos exigentes.
-Funcionamiento.
+# Funcionamiento.
 Encriptación y Sincronización de Cadena de Conexión (XML + JSON) Ubicación del archivo XML: Antes de iniciar el proceso de encriptación, el archivo ConnectionString.xml debe estar ubicado en la ruta temporal del usuario: %TEMP%\DDPOS\ConnectionString.xml 
 Ejemplo de candena de conexion :
  ConnectionString.xml: <?xml version="1.0"?>
