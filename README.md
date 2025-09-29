@@ -65,7 +65,7 @@ public class ModuleRepository : IModuleRepository
 {
    ##### #region Inicialización
 
-    private readonly IDbHelperAsync _dbHelper;
+    #### private readonly IDbHelperAsync _dbHelper;
 
     public ModuleRepository()
     {
