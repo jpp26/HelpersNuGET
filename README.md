@@ -69,7 +69,7 @@ public class ModuleRepository : IModuleRepository
 
     public ModuleRepository()
     {
-#####      _dbHelper = ConexionFactory.GetConexionJSON();
+#####      _dbHelper = ConexionFactory.GetConexionJSON(); // Obtenemos la conexión desde el factory
         ConexionFactory.LogToFile("🟢 ModuloRepositorio inicializado.");
     }
 
