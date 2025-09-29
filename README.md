@@ -1,4 +1,4 @@
-# Si estás desarrollando en .NET 8 y te importa la seguridad, la modularidad y el rendimiento, te recomiendo probar el paquete SafeConnString. Es una solución elegante y robusta para manejar cadenas de conexión SQL y claves JWT de forma segura.
+## Si estás desarrollando en .NET 8 y te importa la seguridad, la modularidad y el rendimiento, te recomiendo probar el paquete SafeConnString. Es una solución elegante y robusta para manejar cadenas de conexión SQL y claves JWT de forma segura.
 
 ## ¿Qué ofrece?
 
@@ -37,7 +37,7 @@ Se genera dos archivos de conexión, uno XML y otro JSON, xlm es ideal para la C
 
 El sistema se encargará de moverlo automáticamente a la ruta definitiva: %APPDATA%\DDPOS\ConnectionString.xml Esto se realiza mediante el método FileHelperLib.AsegurarArchivoEnAppData().
 
-Propósito: Este módulo permite:
+## Propósito: Este módulo permite:
 
 Encriptar una cadena de conexión SQL en un archivo XML y Json.
 
@@ -47,7 +47,7 @@ Desencriptar la cadena para obtener una instancia blindada de conexión (IDbHelp
 
 Todo el flujo está diseñado para trazabilidad quirúrgica, sin ambigüedad ni estado compartido.
 
-Estructura del Proyecto:
+## Estructura del Proyecto:
 
 FileHelperLib.cs → Encriptación XML + sincronización JSON
 
@@ -57,13 +57,13 @@ ConexionFactory.cs → Obtención de conexión blindada
 
 ConnectionString.xml → Archivo fuente con cadena de conexión XML appsettings.json.json → Archivo fuente con cadena de conexión Json.
 
-Requisitos:
+## Requisitos:
 
 .NET 8. Archivo ConnectionString.xml debe existir inicialmente en %TEMP%\DDPOS. Clases CryptoHelperLib, JwtHelperLib, DbHelperLibAsync implementadas y referenciadas. Cadena de conexión válida en texto plano dentro del atributo DBcnString del XML. Clave base AES (CryptoHelperLib.ClaveBaseAES) definida para realizar la encriptación.
 
 Tamaño de clave AES (CryptoHelperLib.KeySizeAES) especificado para el algoritmo.
 
-Uso:
+## Uso:
 
 Encriptar cadena en XML y sincronizar JSON Método: FileHelperLib.EncriptarCadenaConexion();
 
@@ -85,23 +85,23 @@ Devuelve instancia de DbHelperLibAsync con cadena desencriptada.
 
 Lanza excepción si la cadena no es válida.
 
-Detalles de Encriptación:
+## Detalles de Encriptación:
 
 XML (AES) JSON (AES)
 
-Prefijo: ENC:
+## Prefijo: ENC:
 
 Algoritmo: AES con clave fija (ClaveBaseAES) y tamaño (KeySizeAES)
 
 Método: CryptoHelperLib.EncryptAES(...)
 
-JSON (JWT)
+## JSON (JWT)
 
 Clave JWT encriptada con AES y prefijo ENC:
 
 Método: JwtHelperLib.GenerarJwtKeyEncriptada(...)
 
-Ejemplo de appsettings.json generado:
+## Ejemplo de appsettings.json generado:
 Cadena Json: 
 {
   "ConnectionStrings": {
@@ -126,22 +126,14 @@ Cadena XML:
 <database DBcnString="ENC:z46TgqFRK7zy/CSFjWO6yXHWW2HNQFsvD8UqHkoDh/cruodbGolpxPfqYGQpCA2RLK5bx+sXb0jWitKnL9txSVmC9Ar8/1HeEDctrDUSRuVKdJOvX8y/VJ9L0ikLxGaqVEsQ41bjNj2gWMyBBEd1rERtnKfiwA46JPlHxjh/tbR6lDF8dk09eBn7pNbEwo+oEjrEMUh7Z0LvERQkZDRHCeCQ4E71nTkQIcDAxZ9l1mM4bIcVqRT7vaWkpsbr89+EoaCr9lOmFIlMRUTkvWkRzuCrg8oWhgYc8tWsxMvOD5w=">
 </database>
 
-Validaciones y Diagnóstico:
+## Validaciones y Diagnóstico:
+- Logging técnico por consola.
+- Validación de existencia de archivos.
+- Prefijo ENC: para trazabilidad.
+- Sincronización idempotente: no reescribe si ya está encriptado.
 
-Logging técnico por consola.
-
-Validación de existencia de archivos.
-
-Prefijo ENC: para trazabilidad.
-
-Sincronización idempotente: no reescribe si ya está encriptado.
-
-Buenas prácticas:
-
-No modificar manualmente los archivos XML o JSON.
-
-Validar que la cadena no esté vacía antes de encriptar.
-
-Mantener CryptoHelperLib.ClaveBaseAES en entorno seguro.
-
-Usar ConexionFactory para obtener la conexión, nunca directamente desde XML o de JSON.
+## Buenas prácticas:
+- No modificar manualmente los archivos XML o JSON una vez generado por los encriptadores.
+- Validar que la cadena no esté vacía antes de encriptar.
+- Mantener CryptoHelperLib.ClaveBaseAES en entorno seguro.
+- Usar ConexionFactory para obtener la conexión, nunca directamente desde XML o de JSON.
