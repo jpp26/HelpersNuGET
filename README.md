@@ -60,7 +60,7 @@ Tamaño de clave AES (CryptoHelperLib.KeySizeAES) especificado para el algoritmo
 - Si hay errores, devuelve mensaje trazable.
 ### Obtener conexión blindada Método:
 ConexionFactory.GetConexion(); → XML Obtener conexión blindada Método: ConexionFactory.GetConexionJSON(); → JSON
-Implementación:
+#### Implementación:
 public class ModuleRepository : IModuleRepository
 {
     #region Inicialización
